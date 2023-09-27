@@ -36,9 +36,17 @@ const App = () => {
       {isLoading && <Loading />}
       {!isLoading && !isError && (
         <div>
-          <button type="button" onClick={fetchData}>
-            Reload
-          </button>
+          {tours.length === 0 && (
+            <button
+              type="button"
+              onClick={fetchData}
+              className="btn"
+              style={{ marginTop: "2rem" }}
+            >
+              Refresh
+            </button>
+          )}
+
           <Tours tours={tours} removeTour={removeTour} />
         </div>
       )}

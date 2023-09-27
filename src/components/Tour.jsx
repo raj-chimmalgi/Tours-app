@@ -5,29 +5,32 @@ const Tour = (props) => {
   const { id, name, info, image, price, removeTour } = props;
 
   return (
-    <div>
-      <p>{name}</p>
-      <img src={image} alt={name} style={{ width: "50px", height: "50px" }} />
-      <p>{isReadMore ? info : info.substring(0, 200) + "..."}</p>
-      <a
-        href=""
-        aria-description="read more"
-        onClick={(e) => {
-          e.preventDefault();
-          setIsReadMore(!isReadMore);
-        }}
-      >
-        Read More
-      </a>
-      <h5>{price}</h5>
+    <article className="single-tour">
+      <img src={image} alt={name} className="img" />
+      <span className="tour-price">{price}</span>
+      <div className="tour-info">
+        <h5>{name}</h5>
+        <p>
+          {isReadMore ? info : `${info.substring(0, 200)}...`}
+          <button
+            className="info-btn"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsReadMore(!isReadMore);
+            }}
+          >
+            {isReadMore ? "Show Less" : "Read More"}
+          </button>
+        </p>
+      </div>
       <button
         type="button"
         onClick={() => removeTour(id)}
-        className="btn-block"
+        className="btn btn-block delete-btn"
       >
         Not interested
       </button>
-    </div>
+    </article>
   );
 };
 
